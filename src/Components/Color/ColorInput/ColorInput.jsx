@@ -1,6 +1,6 @@
 export default function ColorInput({ label, name, value, onChange }) {
   return (
-    <div>
+    <div className="color-form-field">
       <label htmlFor={name}>{label}</label>
 
       <input
