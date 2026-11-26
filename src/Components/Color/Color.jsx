@@ -1,6 +1,7 @@
 import "./Color.css";
 import { useState } from "react";
 import ColorForm from "./ColorForm/ColorForm";
+import CopyToClipboard from "./CopyToClipboard/CopyToClipboard";
 
 export default function Color({ color, onDeleteColor, onUpdateColor }) {
   const [isConfirming, setIsConfirming] = useState(false);
@@ -28,6 +29,8 @@ export default function Color({ color, onDeleteColor, onUpdateColor }) {
       }}
     >
       <h1>{displayedColor.role}</h1>
+
+      <CopyToClipboard hex={displayedColor.hex} />
 
       {isEditing ? (
         <ColorForm
