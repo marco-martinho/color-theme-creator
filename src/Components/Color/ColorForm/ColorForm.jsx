@@ -2,45 +2,66 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 import ColorInput from "../ColorInput/ColorInput";
 
-export default function ColorForm({ onAddColor }) {
-  const [color, setColor] = useState({
-    role: "",
-    hex: "#000000",
-    contrastText: "#FFFFFF",
-  });
+export default function ColorForm({
+  onAddColor,
+  initialColor,
+  onUpdateColor,
+  onPreviewChange,
+  onCancel,
+}) {
+  const [color, setColor] = useState(
+    initialColor || {
+      role: "",
+      hex: "#000000",
+      contrastText: "#FFFFFF",
+    },
+  );
 
   function handleChange(event) {
-    setColor({
+    const updatedColor = {
       ...color,
       [event.target.name]: event.target.value,
-    });
+    };
+
+    setColor(updatedColor);
+    onPreviewChange?.(updatedColor);
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    onAddColor({
-      id: nanoid(),
-      ...color,
-    });
+    if (initialColor) {
+      onUpdateColor({
+        ...color,
+        id: initialColor.id,
+      });
+      onCancel();
+    } else {
+      onAddColor({
+        id: nanoid(),
+        ...color,
+      });
 
-    setColor({
-      role: "",
-      hex: "#000000",
-      contrastText: "#FFFFFF",
-    });
+      setColor({
+        role: "",
+        hex: "#000000",
+        contrastText: "#FFFFFF",
+      });
+    }
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="role">Role</label>
-      <input
-        id="role"
-        name="role"
-        value={color.role}
-        onChange={handleChange}
-        required
-      />
+    <form className="color-form" onSubmit={handleSubmit}>
+      <div className="color-form-field">
+        <label htmlFor="role">Role</label>
+        <input
+          id="role"
+          name="role"
+          value={color.role}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
       <ColorInput
         label="Hex"
@@ -56,7 +77,15 @@ export default function ColorForm({ onAddColor }) {
         onChange={handleChange}
       />
 
-      <button type="submit">Add Color</button>
+      <button type="submit">
+        {initialColor ? "Save Changes" : "Add Color"}
+      </button>
+
+      {initialColor && (
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+      )}
     </form>
   );
 }

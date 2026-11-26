@@ -1,6 +1,6 @@
 .color-card {
   margin: 0px 10px;
-  padding: 5px;
+  padding: 10px;
 }
 
 .color-card-headline {
@@ -8,4 +8,36 @@
   padding: 2px 6px;
   background: black;
   color: white;
+}
+
+.color-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+}
+
+.color-form-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.color-form-field input[type="text"] {
+  width: 100px;
+}
+
+.color-form-field input[type="color"] {
+  width: 40px;
+  height: 30px;
+  padding: 0;
+}
+
+.color-form button {
+  flex-shrink: 0;
 }

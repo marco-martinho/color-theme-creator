@@ -2,7 +2,6 @@ import { useState } from "react";
 import { initialColors } from "./lib/colors";
 import Color from "./Components/Color/Color";
 import ColorForm from "./Components/Color/ColorForm/ColorForm";
-
 import "./App.css";
 
 export default function App() {
@@ -17,6 +16,13 @@ export default function App() {
       currentColors.filter((color) => color.id !== id),
     );
   }
+  function handleUpdateColor(updatedColor) {
+    setColors((currentColors) =>
+      currentColors.map((color) =>
+        color.id !== updatedColor.id ? color : updatedColor,
+      ),
+    );
+  }
 
   return (
     <>
@@ -25,7 +31,12 @@ export default function App() {
 
       {colors.length === 0 && <p>No colors left. Add some new colors!</p>}
       {colors.map((color) => (
-        <Color key={color.id} color={color} onDeleteColor={handleDeleteColor} />
+        <Color
+          key={color.id}
+          color={color}
+          onDeleteColor={handleDeleteColor}
+          onUpdateColor={handleUpdateColor}
+        />
       ))}
     </>
   );
