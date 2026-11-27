@@ -1,4 +1,153 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0;
+  padding: 30px;
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  padding: 10px;
+  background-color: #22252a;
+  color: #f1f2f4;
+}
+
+.app-title {
+  margin: 0 0 30px;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+.theme-controls {
+  display: flex;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.theme-controls select,
+.theme-controls input {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #454a52;
+  border-radius: 8px;
+  background-color: #30343b;
+  color: #f1f2f4;
+  font: inherit;
+}
+
+.theme-controls select {
+  min-width: 220px;
+}
+
+.theme-controls form {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+.theme-controls button {
+  min-height: 44px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #e85b18;
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-controls button:hover {
+  background-color: #ff702b;
+}
+
+.theme-controls button:focus-visible,
+.theme-controls select:focus-visible,
+.theme-controls input:focus-visible {
+  outline: 2px solid #ff8b50;
+  outline-offset: 3px;
+}
+
+/* Theme heading */
+h2 {
+  margin: 0 0 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* Theme controls */
+.theme-controls label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+  color: #c5c9d0;
+}
+
+.theme-controls form {
+  display: flex;
+  align-items: end;
+  gap: 10px;
+}
+
+/* Add colour form */
+.color-form {
+  margin-bottom: 24px;
+}
+
+.color-form label {
+  color: #c5c9d0;
+  font-size: 0.9rem;
+}
+
+.color-form input[type="text"] {
+  min-height: 36px;
+  padding: 8px 10px;
+  border: 1px solid #454a52;
+  border-radius: 6px;
+  background: #30343b;
+  color: #f1f2f4;
+  font: inherit;
+}
+
+.color-form button {
+  min-height: 36px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e85b18;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.color-form button:hover {
+  background: #ff702b;
+}
+
+/* Colour card layout */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .color-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 16px;
+  }
+
+  .color-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .theme-controls form {
+    flex-wrap: wrap;
+  }
 }

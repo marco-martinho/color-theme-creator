@@ -29,3 +29,11 @@ export const initialColors = [
     contrastText: "#FFFFFF",
   }, // Lighter charcoal
 ];
+
+export const initialThemes = [
+  {
+    id: "t1",
+    name: "Default Theme",
+    colors: initialColors,
+  },
+];

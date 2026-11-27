@@ -9,6 +9,7 @@ export default function ColorForm({
   onPreviewChange,
   onCancel,
 }) {
+  // #2 Add a new colour or #4 edit an existing one
   const [color, setColor] = useState(
     initialColor || {
       role: "",
@@ -17,6 +18,7 @@ export default function ColorForm({
     },
   );
 
+  // #4 Update the colour preview while editing
   function handleChange(event) {
     const updatedColor = {
       ...color,
@@ -30,6 +32,7 @@ export default function ColorForm({
   function handleSubmit(event) {
     event.preventDefault();
 
+    // #4 Save changes to the existing colour
     if (initialColor) {
       onUpdateColor({
         ...color,
@@ -37,6 +40,7 @@ export default function ColorForm({
       });
       onCancel();
     } else {
+      // #2 Add a new colour with a unique ID
       onAddColor({
         id: nanoid(),
         ...color,
